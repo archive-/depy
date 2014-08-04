@@ -23,7 +23,7 @@ module Depy
       curl -sk 'https://codeload.github.com/#{@github}/zip/master' > #{@name}.zip &&
       unzip -qq #{@name}.zip &&
       rm #{@name}.zip &&
-      mv #{@name}-master #{@name})
+      mv #{@name}-master #{@name} 2> /dev/null)
 
       # TODO add ./deps/Makefile target based on @target
 
