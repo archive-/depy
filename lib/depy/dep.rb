@@ -32,7 +32,7 @@ module Depy
       # first line less than 80 - include_string chars (or add \ and append to
       # next line)
 
-      puts "Using #{@name} (<version>)" # TODO version
+      puts "Installing #{@name} (<version>)" # TODO (1) version (2) Installing / Using
     end
   end
 end

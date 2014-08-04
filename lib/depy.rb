@@ -40,7 +40,7 @@ module Depy
           if response.code.to_i == 200
             dep.metadata(response.body)
           else
-            $stderr.puts "Could not find dep '#{dep}' in the deps available on Github at tjeezy/depy"
+            $stderr.puts "Could not find dep '#{dep.name}' in the deps available on Github at tjeezy/depy".red
             exit 1
           end
         end
@@ -54,6 +54,6 @@ module Depy
       end
     end
 
-    puts 'Depy is finished!'
+    puts 'Depy is finished!'.green
   end
 end
