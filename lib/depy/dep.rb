@@ -1,8 +1,8 @@
 module Depy
   class Dep
-    def initialize(json)
+    def initialize(obj)
       [:name, :url, :github, :tags, :author, :author_url, :target, :include].each do |attr|
-        self.instance_variable_set(:"@#{attr}", json[attr.to_s])
+        self.instance_variable_set(:"@#{attr}", obj[attr])
       end
     end
 

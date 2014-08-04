@@ -2,8 +2,8 @@ Dir[File.join(File.dirname(__FILE__), 'depy/*')].each do |file|
   require file
 end
 
-require 'json'
 require 'net/http'
+require 'yaml'
 
 module Depy
   def self.install(depfile_path='./Depfile')
@@ -36,8 +36,8 @@ module Depy
           request = Net::HTTP::Get.new(uri.request_uri)
           response = http.request(request)
           if response.code.to_i == 200
-            json = JSON.parse(response.body)
-            Dep.new(json).install!
+            yml = YML::load(response.body)
+            Dep.new(yml).install!
           else
             $stderr.puts "Could not find dep '#{dep}' in the deps available on Github at tjeezy/depy"
             exit 1
