@@ -21,7 +21,7 @@ module Depy
       line.strip!
       match_data = line.strip.match(/^dep\s+('[^']+'|"[^"]+")$/)
       if match_data
-        deps << match_data[1][1...-1]
+        deps << Dep.new(match_data[1][1...-1])
       else
         $stderr.puts "Bad line #{i+1} in Depfile: '#{line}'"
       end
@@ -31,19 +31,25 @@ module Depy
       $stderr.puts 'The Depfile specifies no dependencies'
     else
       deps.each do |dep|
-        uri = URI("https://raw.githubusercontent.com/tjeezy/depy/master/deps/#{dep}.json")
+        uri = URI("https://raw.githubusercontent.com/tjeezy/depy/master/deps/#{dep.name}.yml")
 
         Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
           request = Net::HTTP::Get.new(uri.request_uri)
           response = http.request(request)
           if response.code.to_i == 200
-            yml = YML::load(response.body)
-            Dep.new(yml).install!
+            dep.metadata(response.body)
           else
             $stderr.puts "Could not find dep '#{dep}' in the deps available on Github at tjeezy/depy"
             exit 1
           end
         end
+      end
+
+      # TODO resolve dependencies...
+      puts 'Resolving dependencies...'
+
+      deps.each do |dep|
+        dep.install!
       end
     end
 

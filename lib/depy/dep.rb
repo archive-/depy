@@ -1,8 +1,17 @@
+require 'yaml'
+
 module Depy
   class Dep
-    def initialize(obj)
+    attr_reader :name
+
+    def initialize(name)
+      @name = name
+    end
+
+    def metadata(metadata)
+      obj = YAML::load(metadata)
       [:name, :url, :github, :tags, :author, :author_url, :target, :include].each do |attr|
-        self.instance_variable_set(:"@#{attr}", obj[attr])
+        self.instance_variable_set(:"@#{attr}", obj[attr.to_s])
       end
     end
 
