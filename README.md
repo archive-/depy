@@ -23,9 +23,9 @@ dep 'uthash'
 - for other supported dependencies, use `depy list` or `depy search <term>` (ie. `depy search hash`)
 - run `depy install`
 
-At this point, `depy` will download all the dependencies' sources into `/deps`
-add the appropriate `make` targets to the `/deps/Makefile`, and update
-the -I, -L, -l CFLAGS.
+At this point, `depy` will download all the dependencies' sources into `./deps`
+add the appropriate `make` targets to the `./deps/Makefile`, and update
+the `-I`, `-L`, `-l` `CFLAGS` inside of `./Makefile`.
 
 With a simple `#include <uthash.h>`, you should be ready to `make` and
 use the dependency!
