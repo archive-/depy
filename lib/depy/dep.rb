@@ -25,13 +25,14 @@ module Depy
       rm #{@name}.zip &&
       mv #{@name}-master #{@name})
 
-      # Add ./deps/Makefile target based on @target
-      # TODO
+      # TODO add ./deps/Makefile target based on @target
 
-      # Add ./Makefile -I based on @include
-      # TODO look for INCLUDES= line and then check line length and append to
+      # TODO add ./Makefile -I based on @include
+      # look for INCLUDES= line and then check line length and append to
       # first line less than 80 - include_string chars (or add \ and append to
       # next line)
+
+      puts "Using #{@name} (<version>)" # TODO version
     end
   end
 end
