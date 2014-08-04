@@ -1,0 +1,10 @@
+{
+  "name": "uthash",
+  "url": "http://troydhanson.github.io/uthash/",
+  "github": "troydhanson/uthash",
+  "tags": ["hash tables"],
+  "author": "Troy D. Hanson",
+  "author_url": "http://tkhanson.net",
+  "target": null,
+  "include": "src"
+}
