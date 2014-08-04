@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description   = s.summary
   s.homepage      = 'https://github.com/tjeezy/depy'
   s.files         = `git ls-files`.split($/)
-  s.executables   = s.files.grep(%r{^bin/}) {|f| File.basename(f)}
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_paths = ['lib']
 
   s.add_dependency 'thor'

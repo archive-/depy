@@ -3,7 +3,8 @@ Dir[File.join(File.dirname(__FILE__), 'depy/*')].each do |file|
 end
 
 require 'net/http'
-require 'yaml'
+
+[STDOUT, STDERR].each { |fd| fd.sync = true }
 
 module Depy
   def self.install(depfile_path='./Depfile')
