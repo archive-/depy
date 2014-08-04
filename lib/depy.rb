@@ -2,6 +2,7 @@ Dir[File.join(File.dirname(__FILE__), 'depy/*')].each do |file|
   require file
 end
 
+require 'json'
 require 'net/http'
 
 module Depy
@@ -30,12 +31,17 @@ module Depy
     else
       deps.each do |dep|
         uri = URI("https://raw.githubusercontent.com/tjeezy/depy/master/deps/#{dep}.json")
-        p uri
 
         Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
-          request = Net::HTTP::Get.new(uri)
+          request = Net::HTTP::Get.new(uri.request_uri)
           response = http.request(request)
-          p response
+          if response.code.to_i == 200
+            json = JSON.parse(response.body)
+            Dep.new(json).install!
+          else
+            $stderr.puts "Could not find dep '#{dep}' in the deps available on Github at tjeezy/depy"
+            exit 1
+          end
         end
       end
     end

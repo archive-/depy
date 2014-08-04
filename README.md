@@ -33,6 +33,7 @@ use the dependency!
 ## Goals / TODO
 
 - [ ] support specifying version (git tag) / gitref
+- [ ] obviously support dependencies that aren't hosted on Github!
 - [ ] support dynamic linking
 - [ ] allow "recipes" to support other build systems than make (cmake, etc.)
 - [ ] if necessary, not depend on github to host the dependency "recipes"
