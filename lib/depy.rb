@@ -19,7 +19,7 @@ module Depy
       line.strip!
       match_data = line.strip.match(/^dep\s+('[^']+'|"[^"]+")$/)
       if match_data
-        deps << match_data[1][1..-1]
+        deps << match_data[1][1...-1]
       else
         $stderr.puts "Bad line #{i+1} in Depfile: '#{line}'"
       end
@@ -30,6 +30,7 @@ module Depy
     else
       deps.each do |dep|
         uri = URI("https://raw.githubusercontent.com/tjeezy/depy/master/deps/#{dep}.json")
+        p uri
 
         Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
           request = Net::HTTP::Get.new(uri)
