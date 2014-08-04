@@ -1,8 +1,9 @@
+require 'colorize'
+require 'net/http'
+
 Dir[File.join(File.dirname(__FILE__), 'depy/*')].each do |file|
   require file
 end
-
-require 'net/http'
 
 [STDOUT, STDERR].each { |fd| fd.sync = true }
 
