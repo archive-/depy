@@ -10,8 +10,8 @@ module Depy
 
     def metadata(metadata)
       obj = YAML::load(metadata)
-      [:name, :url, :github, :tags, :author, :author_url, :target, :include].each do |attr|
-        self.instance_variable_set(:"@#{attr}", obj[attr.to_s])
+      obj.each do |k, v|
+        self.instance_variable_set(:"@#{k}", v)
       end
     end
 
