@@ -21,8 +21,8 @@ module Depy
       %x(mkdir -p deps &&
       cd deps &&
       curl -sk 'https://codeload.github.com/#{@github}/zip/master' > #{@name}.zip &&
-      unzip -qq #{@name}.zip &&
-      rm #{@name}.zip &&
+      unzip -o -qq #{@name}.zip &&
+      rm -rf #{@name} #{@name}.zip &&
       mv #{@name}-master #{@name} 2> /dev/null)
 
       # TODO add ./deps/Makefile target based on @target
