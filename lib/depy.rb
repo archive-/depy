@@ -1,4 +1,5 @@
 require 'colorize'
+require 'json'
 require 'net/http'
 
 Dir[File.join(File.dirname(__FILE__), 'depy/*')].each do |file|
@@ -65,7 +66,7 @@ module Depy
       response = http.request(request)
       if response.code.to_i == 200
         manifest = JSON.parse(response.body)
-        manifest.each do |name,dep|
+        manifest.sort.each do |name,dep|
           puts "#{name}\t\t#{dep['description']}"
         end
       else
