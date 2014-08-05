@@ -9,7 +9,7 @@ module Depy
 
     desc 'list', 'list all supported dependencies with accompanying metadata'
     def list
-      raise 'list command not implemented yet'
+      Depy.list
     end
 
     desc 'search <query>', 'find a dependency with tag matching <query>'

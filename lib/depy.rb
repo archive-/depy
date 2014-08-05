@@ -56,4 +56,22 @@ module Depy
 
     puts 'Depy is finished!'.green
   end
+
+  def self.list
+    uri = URI("https://raw.githubusercontent.com/tjeezy/depy/master/manifest.json")
+
+    Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      if response.code.to_i == 200
+        manifest = JSON.parse(response.body)
+        manifest.each do |name,dep|
+          puts "#{name}\t\t#{dep['description']}"
+        end
+      else
+        $stderr.puts "Could not fetch manifest from tjeezy/depy".red
+        exit 1
+      end
+    end
+  end
 end
