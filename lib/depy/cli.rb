@@ -13,8 +13,8 @@ module Depy
     end
 
     desc 'search <query>', 'find a dependency with tag matching <query>'
-    def search(query)
-      raise 'search command not implemented yet'
+    def search(*terms)
+      Depy.search(terms)
     end
   end
 end

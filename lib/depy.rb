@@ -67,12 +67,17 @@ module Depy
       if response.code.to_i == 200
         manifest = JSON.parse(response.body)
         manifest.sort.each do |name,dep|
-          puts "#{name}\t\t#{dep['description']}"
+          puts "#{name}\t\t#{dep['description']}\t(#{dep['tags'].join(',')})"
         end
       else
         $stderr.puts "Could not fetch manifest from tjeezy/depy".red
         exit 1
       end
     end
+  end
+
+  # TODO cheat until hosted with actual API + manifest grows...
+  def self.search(terms)
+    print `#{$0} list | grep '#{terms.join(' ')}'`
   end
 end
