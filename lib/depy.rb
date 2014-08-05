@@ -12,7 +12,7 @@ module Depy
     begin
       depfile = File.open(depfile_path, 'r')
     rescue => e
-      $stderr.puts 'Depfy::DepfileNotFound'
+      $stderr.puts 'Depfy::DepfileNotFound'.orange
       exit 1
     end
 
